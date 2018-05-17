@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="bootstrap4/css/bootstrap.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="bootstrap4/font/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
+	<title>Voucher</title>
+</head>
+<style>
+	/**{font-family: 'bellefair', serif;}*/
+		@font-face
+		{
+			font-family: 'bellefair-Regular';
+			src:url('google-font/bellefair-Regular.ttf');
+			src:url('google-font/bellefair-Regular.ttf') format('ttf');
+			src:url('google-font/bellefair-Regular.ttf') format('truetype');
+		}
+
+	#bg{
+		background-image: url(img/pics11.jpg);
+		width: auto;
+		height: 100vh;
+		background-size: cover;
+		background-repeat: no-repeat;
+		color: #000000;	 
+		background-attachment:fixed;
+		font-family: Bellefair-Regular;
+		font-size: 25px;
+	}
+</style>
+<body>
+	<div id="bg">
+	<div class="container">
+			<div class="row">
+			<div class="col-md-6 mt-3">
+				<span style="color:#982672 "><h3>RECHARGE VOUCHER</h3></span>
+			<input type="text" id="gen">
+			<button class="btn btn-sm btn-success" onclick="get()">Generate</button>
+			
+		</div>
+		<div class="col-md-6 mt-3">
+			<div id="come"></div>
+			
+		</div>
+	</div>
+</div>
+</div>
+
+
+<!-- <p id=""></p> -->
+</body>
+<script type="text/javascript" src="bootstrap4/js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="bootstrap4/js/popper.js"></script>
+		<script type="text/javascript" src="bootstrap4/js/bootstrap.js"></script>
+</script>
+<script>
+	// p=Math.random();
+	// alert(p)
+	function get()
+	{
+		var g=gen.value;
+		var cardlist=[];
+		for(j=1; j<=g; j++){
+			var p="";
+			for(k=1; k<=4; k++){
+				var q="";
+				for(i=1; i<=4; i++){
+					a=Math.random()*10;
+					b=Math.floor(a);  
+					q+=b;
+				}
+				p+=q;
+			}
+			// var p=p.substring(0,4)+'-'+p.substring(4,8)+'-'+p.substring(8,12)+'-'+p.substring(12,16);
+			cardlist.push(p);
+		}
+		// alert(cardlist);
+		document.getElementById('come').innerHTML=cardlist.join('<br/>');
+		localStorage.setItem('Voucher',JSON.stringify(cardlist));
+	}
+</script>
+</html>
