@@ -1,0 +1,247 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="bootstrap4/css/bootstrap.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="bootstrap4/font/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
+	<title>Phone</title>
+</head>
+	<style>
+	table{
+		text-align: center;
+		border-radius: 10px;
+	}
+	button{
+		width: 80px;
+		height: 90%;
+		/*background-color: #C8DB74*/
+	}
+	input{
+		width: 100%;
+		height: 100%;
+		font-size: 46px;
+	}
+	/*#result{
+		text-overflow: 12%;
+	}*/
+</style>
+<body>
+	<div class="container-fluid" style="background-color: ">
+		<div id="bg">
+		<div class="row">
+			<div class="col-md-4 mt-5">
+				<table class="table-light table-striped" border="3" width="60%" height="500px" align="center" style="background-color:#272822 ">
+					<tr>
+						<td id="tim" style="background-color: #ffffff;position: relative;"></td>
+					</tr>
+
+					<tr>
+						<td colspan="5" id="result" style="height: 300px; background-color: #ffffff"></td>
+					</tr>
+
+					<tr>
+						<td><button onclick="next('')" class="btn btn-sm">-</button></td>
+						<td rowspan="2" align="center" style="width: 20%; height: 80px"><button class="btn btn-sm"><span class="fa fa-home"></span></button></td>
+						<td id="cl"><button onclick="clears('')" class="btn btn-sm">|</button></td>
+					</tr>
+
+					<tr>
+						<td><button onclick="send('')" class="btn btn-sm btn-success"><span class="fa fa-phone-square"></span></button></td>
+						<td><button id="red" onclick="on('')" class="btn btn-sm btn-danger"><span class="fa fa-phone"></span></button></td>
+					</tr>
+
+					<tr>
+						<td><button onclick="get('1')" class="btn btn-sm">1.,</button></td>
+						<td><button onclick="get('2')" class="btn btn-sm">2abc</button></td>
+						<td><button onclick="get('3')" class="btn btn-sm">3def</button></td>
+					</tr>
+
+					<tr>
+						<td><button onclick="get('4')" class="btn btn-sm">4ghi</button></td>
+						<td><button onclick="get('5')" class="btn btn-sm">5jkl</button></td>
+						<td><button onclick="get('6')" class="btn btn-sm">6mno</button></td>
+					</tr>
+
+					<tr>
+						<td><button onclick="get('7')" class="btn btn-sm">7pqrs</button></td>
+						<td><button onclick="get('8')" class="btn btn-sm">8tuv</button></td>
+						<td><button onclick="get('9')" class="btn btn-sm">9wxzy</button></td>
+					</tr>
+
+					<tr>
+						<td><button onclick="get('*')" class="btn btn-sm">*<span class="fa fa-lock"></span></button></td>
+						<td><button onclick="get('0')" class="btn btn-sm">0</button></td>
+						<td><button onclick="get('#')" class="btn btn-sm">#<span class="fa fa-viber"></span></button></td>
+					</tr>
+
+
+				</table>
+			</div>
+
+						<div class="col-md-4 mt-5" >
+							<table bgcolor="#ffe796" style="height: 100px;width: 70%;">
+								<tr>
+									<td>SAMSUNG</td>
+								</tr>
+
+								<tr>
+									<td colspan="5"  id="newresult" style="background-color: #BCCD95; height: 500px;"></td>
+								</tr>
+
+								<tr>
+									<td><button onclick="pick()" class="btn btn-sm btn-success"><span class="fa fa-phone"></span></button></td>
+									<td><button onclick="end()" class="btn btn-sm btn-danger"><span class="fa fa-phone"></span></button></td>
+								</tr>
+								
+							</table>
+							
+						</div>
+
+
+
+
+						<div class="col-md-4 mt-5">
+							<div>
+								<button class="btn btn-sm btn-info"><a href="vc.html">load</a></button>
+								
+							</div>
+							
+						</div>
+		</div>
+	</div>
+</div>
+
+		
+</body>
+<script>
+	var sec=0;
+	var request=[["1. Buy Data plan</br>2. Buy Xtra Value</br>3. Buy Goody Bags</br>4. Check Balance</br>5. Roaming & Int'l Offers</br>6. Xtratime/Byte</br>7. Data Gift</br>8. YouTube Packs"],
+	["Buy Data Plan</br>1. Daily plan</br>2. Weekly Plan</br>3. Monthly Plan</br>4. 2-Months Plan</br>5. 3-Months Plan</br>0. Back</br>00 MainMenu","Daily Plan</br>1. 50MB Daily plan;Cost 100 NGN</br>2. 150MB Daily Plan; Cost 200 NGN</br>0. Back</br>","Weekly Plan</br>1. 150MB Weekly Plan; Cost 300NGN</br>2. 500MB + 250MB bouns (1am-7am) Weekly @N500</br>0. Back</br>00. MainMenu","Monthly Plans</br>1. 1GB + 500MB Bouns (1am-7am) @ N1000</br>2. 1.5GB @ N1200</br>3. 2.5GB + 1GB Bouns (1am-7am) @ N2000</br>4. 5GB @ N3500</br>5. 10GB @ N5000</br>6. 22GB @ N10000</br>0. Back</br>00. MainMenu","2-Months Plan</br>1. 50GB 2-Months Plan; Cost 20000NGN</br>0. Back</br>00. MainMenu","3-Months Plan</br>1. 85GB 3-Months Plan;Cost N50000NGN</br>0. Back</br>00. MainMenu"],
+	["XtraValue Bundles</br>1. XtraTalk</br>2. XtraData</br>3. Eligle International Destionations</br>0. Back</br>00.MainMenu","Select an XtraTalk Plan of your chioce</br>1. XtraTalk300</br>2. XtraTalk500</br>3. XtraTalk1000</br>4. XtraTalk2000</br>5. XtraTalk5000</br>6. XtraTalk10000</br>7. XtraTalk15000</br>8. XtraTalk200000</br>0.Back</br>00.MainMenu","Buy XtraTalk 300 @ N300 and get N1000 talk time and 50MB, valid for 7days</br>1. Proceed</br>2. Optout</br>0. Back</br>00. MainMenu","Oops Your request to purchase XtraValue failed due to insufficient balance. No worries, Pleas recharge and dial *131*2# to buy a new bundle.","Buy XtraTalk 500 @ N500 and get N1,950 talk time and 100MB, valid for 7days</br>1. Proceed</br>2. Optout</br>0. Back</br>00. MainMenu","Oops Your request tp purchase XtraValue failed due to insufficient balance. No worries, Pleas recharge and dial *131*2# to buy a new bundle."],
+	["1.WhatsApp</br>2. Facebook</br>3. Twitter</br>4. Instagram</br>5.2GO</br>6. Wechat</br>7. Eskimi</br>8.NIMBUZZ</br>9. PICK ANY 5</br>0. Back</br>00. MainMenu","1. WhatsApp Daily@N25</br>2. WhatsApp Weekly@N50</br>3. WhatsApp Monthly@N150</br>0. Back</br>00. MainMenu","1. Facebook Daily@N25</br>2.Facebook Weekly@N50</br>3. Facebook Monthly@N150</br>0. Back</br>00. MainMenu","1. Twitter Daily@N25</br>2.Twitter Weekly@N50</br>3. Twitter Monthly@N150</br>0. Back</br>00. MainMenu","1. Instagram Daily@N25</br>2.Instagram Weekly@N50</br>3. Instagram Monthly@N150</br>0. Back</br>00. MainMenu","1. 2GO Daily@N25</br>2. 2GO Weekly@N50</br>3. 2GO Monthly@N150</br>0. Back</br>00. MainMenu","1. Wechat Daily@N25</br>2.Wechat Weekly@N50</br>Wechat Monthly@N150</br>0. Back</br>00. MainMenu","1. Eskimi Daily@N25</br>2. Eskimi Weekly@N50</br>3. Eskimi Monthly@N150</br>0. Back</br>00. MainMenu","1. NIMBUZZ Daily@N25</br>2. NIMBUZZ Weekly@N50</br>3. NIMBUZZ Monthly@N150</br>0.  Back</br>00. MainMenu","1.  Daily@N25</br>2. Weekly@N50</br>3. Monthly@N150</br>0. Back</br>00. MainMenu"],
+	["Sorry, you currently have no active Data Bundle. Please dail *131*1# to buy a New Bundle, *606# to Borrow Data or *131*200# to Browse @N3/MB"],
+	["1. Hello World Roaming Offer</br>2. SuperRoamer(Free Incoming Roaming)</br>3. Int'l Calling Bundle</br>0. Back","1. UAE Roaming Bundle</br>2. Hello World Roaming rates</br>3. Hello World Roaming Bundle</br>0. Back</br>00. MainMenu","1. Check Eligibility</br>2. Eligle Destionations</br>3. Check balance</br>1. Proceed</br>0. Back</br>00.MainMenu","1. View Eligle Destionations (Bundle application to Select network in destionations listed)</br>2. Subscribe to In'tl Calling Bundle</br>0. Back</br>00.MainMenu"],
+	["Welcome to MTN XtraTime.</br>1. Eligibility Status</br>2. Request Data (XtraByte)</br>3. XtraCash</br>4. XtraTime Balance</br>5. XtraTime History</br>6. About XtraTime</br>Exit","Y'ello</br>Your current credit limit is NGN 500. You can dial *606# to request a data advance anytime. Thank you","Welcome to MTN XtraTime.</br>1. 500MB (NGN 575.00)</br>2. 150MB( NGN 345.00)</br>3. 150MB( NGN 230.00)</br>4. 50MB( NGN 115.00)</br>0. Back","Please Wait","Connection problem or invlid MMI code.","Your request is being processed. You will receive an SMS notification soon.","XtraTime is a service that allows you to borrow airtime or data when you tun out of credit.just dial *606#.Vist www.mtnonline.com for more info."],
+	["Welcome to MTN Data Gift.Select Data Plan To Gift</br>1. Daily plan</br>2. Weekly Plan</br>3. Monthly Plan</br>4. 2-Months Plan</br>5. 3-Months Plan","1. 50MB @ N100</br>2. 150MB @ N200</br>0. Back</br>00. MainMenu","1. 150MB @ N300</br>2. 500MB + 250MB bouns</br>(1am-7am)@ N500</br>0. Back</br>00.MainMenu","1. 1GB + 500MB Bouns (1am-7am) @ N1000</br>2. 1.5GB @ N1200</br>3. 2.5GB +1GB Bouns (1am-7am)@ N2000</br>4. 5GB @ N3500</br>5. 10GB @ N5000</br>6. 22GB @ N10000</br>0. Back</br>00. MainMenu","1. 50GB @ N20000</br>0. Back</br>00. MainMenu","1. 85GB @ N50000</br>0. Back</br>00. MainMenu"],
+	["Subscribe to a video pack plan & enjoy video streaming or download on YouTube.</br>1. 1hour @ N150</br>2. 3hours @ N400</br>0. Back</br>00. MainMenu"]]
+	sec=6;
+	locker="";
+	come="pg";
+	listone="";
+	listtwo="";
+	cardlist=[];
+	c="";
+	x="";
+	var picksec=0;
+	var min=0;
+	
+	function on()
+	{
+		document.getElementById('result').innerHTML="";
+		window.clearInterval(stop);
+		locker="on";
+	}
+	function get(g)
+	{
+		if (locker=="off") {document.getElementById('request').innerHTML="Incorrect USSD CODE";locker="off";}
+		v=document.getElementById('result').innerHTML;	
+		if(document.getElementById('result').innerHTML =='')
+		{
+			document.getElementById('result').innerHTML=g;
+	      }
+	      else if(v.length>24)
+	      {
+	      	document.getElementById('result').innerHTML="";
+	      	document.getElementById('result').innerHTML=g;
+	      }
+	      else
+	      {
+	      	document.getElementById('result').innerHTML+=g;
+	      }
+	}
+function clears()
+	{
+
+
+		var str= document.getElementById('result').innerHTML;
+		var l=str.length;
+		l--;
+		document.getElementById('result').innerHTML=str.substr(0,l);
+		locker="on";
+		
+	}
+ 
+	function send()
+		{  
+		var papa=localStorage.getItem('Voucher')
+		var j=JSON.parse(papa);
+        amt=localStorage.getItem('Amount');
+		// alert(j[3])
+
+		if (sec<1) {sec=3; return;}
+		sec--;
+		setTimeout("send()",1000);
+
+		if (document.getElementById('result').innerHTML=='*555*'+j[0]+'#') {document.getElementById('result').innerHTML='Loading';}
+			else if(document.getElementById('result').innerHTML=='Loading' && sec==0) {document.getElementById('result').innerHTML='Your recharge of N100 was successful';localStorage.Amount=parseInt(localStorage.Amount)+100;} 
+
+			// if (document.getElementById('result').innerHTML=='*555*'++'#') {document.getElementById('result').innerHTML='Loading...';}
+			// else if (document.getElementById('result').innerHTML=='Loading...' && sec==0) {document.getElementById('result').innerHTML='Dear Customer,this pin is incorrect and your line will be BARRED from the service after 5 incorrect attempts. Please check the pin and try again. Thank you!';}
+
+		if (come=="pg" && document.getElementById('result').innerHTML=="*131#") {document.getElementById('result').innerHTML='Please Wait...';}
+		else if (document.getElementById('result').innerHTML=='Please Wait...' && sec==0) {document.getElementById('result').innerHTML=request[0][0];locker="off";}
+
+
+		if (come=="pg1"&&sec==2) {listone=document.getElementById('result').innerHTML;
+	    document.getElementById('result').innerHTML='Please Wait';}
+		else if (document.getElementById('result').innerHTML=='Please Wait'&&sec==0){
+		   document.getElementById('result').innerHTML=request[listone][0];come="pg2";}
+
+
+		if (come=="pg3"&&sec==2) {listtwo=document.getElementById('result').innerHTML;
+	       document.getElementById('result').innerHTML='Please Wait';}
+          else {if (document.getElementById('result').innerHTML=='Please Wait'&&sec==0) {document.getElementById('result').innerHTML=request[listone][listtwo];come="pg4";}}
+       
+		if(document.getElementById('result').innerHTML=="*556#") {document.getElementById('result').innerHTML='Requesting...'}
+			else if (document.getElementById('result').innerHTML=='Requesting...' && sec==0) {document.getElementById('result').innerHTML="Pulse main balance :N"+amt+".0:Buy N25 daily Night Data plan & get 500MB,12am-4am";} 
+
+		
+		// if (document.getElementById('result').innerHTML.length==11) {document.getElementById('result').innerHTML="Calling...";}
+		// else if(document.getElementById('result').innerHTML=="Calling..." && sec==0)  {document.getElementById('result').innerHTML=min+":"+picksec;} 
+	}
+
+	function next()
+	{
+		locker="on";
+		if (come=="pg") {document.getElementById('result').innerHTML="";come="pg1";}
+			if (come=="pg2") {document.getElementById('result').innerHTML="";come="pg3";}
+			if (come=="pg4") {document.getElementById('result').innerHTML="";come="pg5";}
+	}
+
+	function pick()
+	{
+		if (document.getElementById('newresult').innerHTML="";) {return}
+	}
+
+		function timer()
+	{
+		var d = new Date();
+		 var h=d.getHours();
+		 var m=d.getMinutes();
+		var s=d.getSeconds();
+		if (m<=9) {m="0"+m;}
+		if (s<=9) {s="0"+s;}
+		if (h<=9) {h="0"+h;}
+ 
+		document.getElementById("tim").innerHTML=h+":"+m;
+		window.setTimeout("timer()",1000);
+	}
+	timer();
+
+	
+</script>
+<script type="text/javascript" src="bootstrap4/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="bootstrap4/js/popper.js"></script>
+	<script type="text/javascript" src="bootstrap4/js/bootstrap.js"></script>
+</html>
