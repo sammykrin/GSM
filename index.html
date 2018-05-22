@@ -37,7 +37,7 @@
 					</tr>
 
 					<tr>
-						<td colspan="5" id="result" style="height: 300px; background-color: #ffffff"></td>
+						<td colspan="5" id="result" style="height: 300px; background-color: #52D9ef"><img src="img/cub.jpg" style="width: 100%"></td>
 					</tr>
 
 					<tr>
@@ -79,19 +79,19 @@
 				</table>
 			</div>
 
-						<div class="col-md-4 mt-5" >
+						<div class="col-md-4 mt-5">
 							<table bgcolor="#ffe796" style="height: 100px;width: 70%;">
 								<tr>
-									<td>SAMSUNG</td>
+									<td colspan="3" align="center">SAMSUNG</td>
 								</tr>
 
 								<tr>
-									<td colspan="5"  id="newresult" style="background-color: #BCCD95; height: 500px;"></td>
+									<td colspan="5"  id="newresult" style="background-color: #BCCD95; height: 500px;"><img src="img/sam.jpg" style="width: 100%;height: 500px"></td>
 								</tr>
 
 								<tr>
 									<td><button onclick="pick()" class="btn btn-sm btn-success"><span class="fa fa-phone"></span></button></td>
-									<td><button onclick="end()" class="btn btn-sm btn-danger"><span class="fa fa-phone"></span></button></td>
+									<td><button onclick="mopa()" class="btn btn-sm btn-danger"><span class="fa fa-phone"></span></button></td>
 								</tr>
 								
 							</table>
@@ -139,7 +139,9 @@
 	function on()
 	{
 		document.getElementById('result').innerHTML="";
-		window.clearInterval(stop);
+		document.getElementById('newresult').innerHTML="";
+		window.clearInterval(stp);
+
 		locker="on";
 	}
 	function get(g)
@@ -207,8 +209,9 @@ function clears()
 			else if (document.getElementById('result').innerHTML=='Requesting...' && sec==0) {document.getElementById('result').innerHTML="Pulse main balance :N"+amt+".0:Buy N25 daily Night Data plan & get 500MB,12am-4am";} 
 
 		
-		// if (document.getElementById('result').innerHTML.length==11) {document.getElementById('result').innerHTML="Calling...";}
-		// else if(document.getElementById('result').innerHTML=="Calling..." && sec==0)  {document.getElementById('result').innerHTML=min+":"+picksec;} 
+		if (document.getElementById('result').innerHTML.length==11) {document.getElementById('result').innerHTML="Calling...";}
+		else if(document.getElementById('result').innerHTML=="Calling..." && sec==0)  {document.getElementById('newresult').innerHTML='Incoming call';}
+
 	}
 
 	function next()
@@ -219,12 +222,21 @@ function clears()
 			if (come=="pg4") {document.getElementById('result').innerHTML="";come="pg5";}
 	}
 
-	function pick()
+	function mopa()
 	{
-		if (document.getElementById('newresult').innerHTML="";) {return}
+		document.getElementById('result').innerHTML="";
+		document.getElementById('newresult').innerHTML="";
+		window.clearInterval(stp);
 	}
 
-		function timer()
+	function pick()
+	{
+		if (document.getElementById('newresult').innerHTML='Incoming call') {document.getElementById('newresult').innerHTML=min+":"+picksec;document.getElementById('result').innerHTML=min+":"+picksec;picksec++;localStorage.Amount--;}
+		if (picksec==60) {min++;picksec=0;}
+		stp=setTimeout('pick()',1000);
+	}
+
+	function timer()
 	{
 		var d = new Date();
 		 var h=d.getHours();
