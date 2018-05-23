@@ -133,6 +133,8 @@
 	x="";
 	var picksec=0;
 	var min=0;
+	var call=new Audio('aud/ringing.mp3')
+	var nocredit=new Audio('aud/lowcredit.mp3')
 	
 	function on()
 	{
@@ -208,9 +210,12 @@ function clears()
 
 		
 		if (document.getElementById('result').innerHTML.length==11) {document.getElementById('result').innerHTML="Calling...";}
-		else if(document.getElementById('result').innerHTML=="Calling..." && sec==0)  {document.getElementById('newresult').innerHTML='Incoming call';}
+		else if(document.getElementById('result').innerHTML=="Calling..." && localStorage.Amount!=0 && sec==0)  {document.getElementById('newresult').innerHTML='Incoming call';call.play();}
+		else if(document.getElementById('result').innerHTML=="Calling..." &&localStorage.Amount<=0 && sec==0){
+			nocredit.play();document.getElementById('result').innerHTML="Error in Connection";}
 
-	}
+
+	 }
 
 	function next()
 	{
@@ -229,11 +234,12 @@ function clears()
 
 	function pick()
 	{
-		if (document.getElementById('newresult').innerHTML='Incoming call') {document.getElementById('newresult').innerHTML=min+":"+picksec;document.getElementById('result').innerHTML=min+":"+picksec;picksec++;localStorage.Amount--;if (localStorage.Amount==0) {alert('Your acct has been exhausted');document.getElementById('result').innerHTML="";
-		document.getElementById('newresult').innerHTML="";return;}}
-		if (picksec==60) {min++;picksec=0;}
-		stp=setTimeout('pick()',1000);
-	}
+		
+			if (document.getElementById('newresult').innerHTML='Incoming call') {call.pause();document.getElementById('newresult').innerHTML=min+":"+picksec;document.getElementById('result').innerHTML=min+":"+picksec;picksec++;localStorage.Amount--;if (localStorage.Amount<=0) {alert('Your acct has been exhausted');document.getElementById('result').innerHTML="";
+			document.getElementById('newresult').innerHTML="";return;}}
+			if (picksec==60) {min++;picksec=0;}
+				stp=setTimeout('pick()',1000);
+			}
 
 	function timer()
 	{
