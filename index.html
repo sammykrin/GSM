@@ -27,8 +27,7 @@
 	}*/
 </style>
 <body>
-	<div class="container-fluid" style="background-color: ">
-		<div id="bg">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-4 mt-5">
 				<table class="table-light table-striped" border="3" width="60%" height="500px" align="center" style="background-color:#272822 ">
@@ -79,7 +78,7 @@
 				</table>
 			</div>
 
-						<div class="col-md-4 mt-5">
+						<div class="col-md-4 mt-5" >
 							<table bgcolor="#ffe796" style="height: 100px;width: 70%;">
 								<tr>
 									<td colspan="3" align="center">SAMSUNG</td>
@@ -109,7 +108,6 @@
 							
 						</div>
 		</div>
-	</div>
 </div>
 
 		
@@ -231,7 +229,8 @@ function clears()
 
 	function pick()
 	{
-		if (document.getElementById('newresult').innerHTML='Incoming call') {document.getElementById('newresult').innerHTML=min+":"+picksec;document.getElementById('result').innerHTML=min+":"+picksec;picksec++;localStorage.Amount--;}
+		if (document.getElementById('newresult').innerHTML='Incoming call') {document.getElementById('newresult').innerHTML=min+":"+picksec;document.getElementById('result').innerHTML=min+":"+picksec;picksec++;localStorage.Amount--;if (localStorage.Amount==0) {alert('Your acct has been exhausted');document.getElementById('result').innerHTML="";
+		document.getElementById('newresult').innerHTML="";return;}}
 		if (picksec==60) {min++;picksec=0;}
 		stp=setTimeout('pick()',1000);
 	}
